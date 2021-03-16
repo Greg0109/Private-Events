@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-    has_many :atendees
+    has_many :atendees, foreign_key: :event_id
     has_many :users, through: :atendees
 
     validates :title, presence: true, length: { minimum: 5 }
