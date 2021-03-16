@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/events' => 'events#index'
   get '/events/:id' => 'events#show', as: :event
   get '/users' => 'users#index'
-  get '/users/show' => 'users#show'
+  get '/users/show/:id' => 'users#show', as: :user
   get '/users/new' => 'users#new'
   post 'users' => 'users#create'
   delete '/users/logout' => 'users#logout'

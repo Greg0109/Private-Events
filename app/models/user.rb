@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-    has_many :attendees
-    has_many :events, through: :attendees
+    has_many :atendees
+    has_many :events, through: :atendees
 end

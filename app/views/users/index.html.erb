@@ -1,6 +1,6 @@
 <% @users.each do |user| %>
     <div class="actor col-xs-2">
         <h3> <%= user.username %> </h3>
-        <%= link_to "Learn more", user_path(user) %>
+        <%= link_to "Learn more", "/users/show/#{user.id}" %>
     </div>
 <% end %>
