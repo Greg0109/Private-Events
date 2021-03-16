@@ -4,11 +4,37 @@
     </div>
 </div>
 
-<h2>Events</h2>
-<% @events.each do |event| %>
+<h1>Past Events</h1>
+<% @past_events.each do |event| %>
     <div class="event">
-        <h3 class="event-title"> <%= event.title %> </h3>
-        <p class="event-release-year"> <%= event.description %> </p>
-        <p class="event-plot"> <%= event.date %> </p>
+        <h3>
+            <%= event.title %>
+        </h3>
+        <p>
+            <%= event.description %>
+        </p>
+        <p>
+            <%= event.date %>
+        </p>
+        <%= link_to "See Event", "/events/show/#{event.id}" %>
+        <%= link_to "Attend", events_attend_path(:event_id => event.id), method: :post %>
+    </div>
+<% end %>
+<br>
+<br>
+<h1>Upcoming Events</h1>
+<% @upcoming_events.each do |event| %>
+    <div class="event">
+        <h3>
+            <%= event.title %>
+        </h3>
+        <p>
+            <%= event.description %>
+        </p>
+        <p>
+            <%= event.date %>
+        </p>
+        <%= link_to "See Event", "/events/show/#{event.id}" %>
+        <%= link_to "Attend", events_attend_path(:event_id => event.id), method: :post %>
     </div>
 <% end %>

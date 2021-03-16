@@ -22,7 +22,9 @@ class UsersController < ApplicationController
     def show
         if logged_in?
             @user = User.find(params[:id])
-            @events = Event.where("user_id='#{@user.id}'")
+            @event = Event.where("user_id='#{@user.id}'")
+            @past_events = @event.past
+            @upcoming_events = @event.upcoming
         else
             redirect_to users_new_path
         end
