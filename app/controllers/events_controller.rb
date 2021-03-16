@@ -20,7 +20,8 @@ class EventsController < ApplicationController
 
     def create
         user_id = session[:userid]
-        @event = Event.new(event_params.merge(user_id: user_id))
+        @user = User.where("id='#{user_id}'").take
+        @event = @user.events.build(event_params.merge(user_id: user_id))
         if @event.save
             redirect_to root_path
         else
