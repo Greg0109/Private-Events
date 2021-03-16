@@ -5,7 +5,13 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
-        # @attendees = @event.attendees
+        @attendees = Atendee.where("event_id='#{@event.id}'")
+        @names = Array.new
+        @attendees.each do |x|
+            username = User.where("id='#{x.user_id}'")
+            username = username.collect(&:username)
+            @names.push(username[0])
+        end
     end
     
     def new
@@ -19,6 +25,19 @@ class EventsController < ApplicationController
             redirect_to root_path
         else
             render 'new'
+        end
+    end
+
+    def attend
+        if logged_in?
+            event = params[:event_id]
+            userid = session[:userid]
+            @atendee = Atendee.new(:user_id => userid, :event_id => event)
+            if @atendee.save
+                redirect_to "/events/show/#{event}"
+            else
+                redirect_to root_path
+            end
         end
     end
 
