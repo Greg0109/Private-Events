@@ -1,0 +1,15 @@
+<%= form_for(@event) do |f| %>  
+  <div class="field"> 
+    <%= f.text_field :title %> 
+  </div>
+  <div class="field"> 
+    <%= f.text_field :description %> 
+  </div>
+  <div class="field"> 
+    <%= f.text_field :date %> 
+  </div>
+  <%= f.hidden_field :user_id, value:session[:userid] %>
+  <div class="actions"> 
+    <%= f.submit "Create" %> 
+  </div> 
+<% end %> 

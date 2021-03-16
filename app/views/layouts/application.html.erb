@@ -17,6 +17,7 @@
       <%= link_to 'New User', "/users/new" %>
     <% else %>
       <h1> <%= session[:username] %> </h1>
+      <%= link_to 'Create event', "/events/new" %>
       <%= link_to 'Logout', users_logout_path, method: :delete %>
     <% end %>
   </nav>
