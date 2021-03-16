@@ -5,6 +5,8 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
+        user_id = @event.user_id
+        @user = User.where("id='#{user_id}'").take
         @attendees = Atendee.where("event_id='#{@event.id}'")
         @names = Array.new
         @attendees.each do |x|
