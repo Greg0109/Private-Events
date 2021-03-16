@@ -1,0 +1,14 @@
+<div class="user">
+    <div class="info">
+        <h3 class="user-name"> <%= @user.username %> </h3>
+    </div>
+</div>
+
+<h2>Events</h2>
+<% @events.each do |event| %>
+    <div class="event">
+        <h3 class="event-title"> <%= event.title %> </h3>
+        <p class="event-release-year"> <%= event.description %> </p>
+        <p class="event-plot"> <%= event.date %> </p>
+    </div>
+<% end %>

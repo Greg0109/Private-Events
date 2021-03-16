@@ -9,7 +9,17 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <br>
+  <br>
+  <br>
+  <nav>
+    <% if !logged_in? %>
+      <%= link_to 'New User', "/users/new" %>
+    <% else %>
+      <h1> <%= session[:username] %> </h1>
+      <%= link_to 'Logout', users_logout_path, method: :delete %>
+    <% end %>
+  </nav>
   <body>
     <%= yield %>
   </body>
