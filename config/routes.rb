@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   get '/events/new' => 'events#new'
   post 'events' => 'events#create'
   post '/events/attend' => 'events#attend'
+
   get '/users' => 'users#index'
   get '/users/show/:id' => 'users#show', as: :user
   get '/users/new' => 'users#new'
   post 'users' => 'users#create'
-  delete '/users/logout' => 'users#logout'
+  get '/users/log_in' => 'users#log_in'
+  post '/users/log_in' => 'users#log_in_user'
+  delete '/users/log_out' => 'users#log_out'
+  
   root "events#index"
 end

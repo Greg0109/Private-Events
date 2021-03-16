@@ -28,7 +28,21 @@ class UsersController < ApplicationController
         end
     end
 
-    def logout
+    def log_in
+    end
+
+    def log_in_user
+        @user = User.where("username='#{params[:username]}'").take
+        if @user.nil?
+            render :sign_in
+        else
+            session[:userid] = @user.id
+            session[:username] = @user.username
+            redirect_to root_path
+        end
+    end
+
+    def log_out
         reset_session
         redirect_to root_path
     end
