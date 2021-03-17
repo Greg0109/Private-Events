@@ -29,6 +29,8 @@
             <%= event.date %>
         </p>
         <%= link_to "See Event", "/events/show/#{event.id}" %>
-        <%= link_to "Attend", events_attend_path(:event_id => event.id), method: :post %>
+        <% if logged_in? %>
+            <%= link_to "Attend", events_attend_path(:event_id => event.id), method: :post %>
+        <% end %>
     </div>
 <% end %>
