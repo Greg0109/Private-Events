@@ -1,9 +1,9 @@
 <%= form_for(@event) do |f| %>  
   <div class="field"> 
-    <%= f.text_field :title %> 
+    <%= f.text_field :title, placeholder: "Must have at least 5 characters" %> 
   </div>
   <div class="field"> 
-    <%= f.text_field :description %> 
+    <%= f.text_field :description, placeholder: "Must have at least 10 characters" %> 
   </div>
   <div class="field"> 
     <%= f.date_field :date %> 
