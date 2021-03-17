@@ -1,5 +1,5 @@
 <%= form_tag(users_log_in_path, method: :post) do %>  
-  <%= text_field_tag(:username) %>
+  <%= text_field_tag :username, nil,  placeholder: 'Caps sensitive' %>
   
   <%= submit_tag("Submit") %>
 <% end %> 

@@ -10,12 +10,16 @@ class UsersController < ApplicationController
     
     def create
         @user = User.new(user_params)
-        if @user.save
-            session[:userid] = @user.id
-            session[:username] = @user.username
-            redirect_to root_path
-        else
-            render 'new'
+        respond_to do |format|
+            if @user.save
+                session[:userid] = @user.id
+                session[:username] = @user.username
+                format.html { redirect_to root_path, notice: 'User created successfully' }
+                format.json { render :index, status: :created, location: root_path}
+            else
+                format.html { redirect_to users_new_path, notice: 'Error while creating user' }
+                format.json { render 'new', location: users_new_path }
+            end
         end
     end
     
@@ -36,7 +40,10 @@ class UsersController < ApplicationController
     def log_in_user
         @user = User.where("username='#{params[:username]}'").take
         if @user.nil?
-            render :sign_in
+            respond_to do |format|
+                format.html { redirect_to users_log_in_path, notice: 'Failed to login.' }
+                format.json { render :sign_in, location: users_log_in_path}
+            end
         else
             session[:userid] = @user.id
             session[:username] = @user.username

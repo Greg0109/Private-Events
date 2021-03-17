@@ -23,13 +23,24 @@ class EventsController < ApplicationController
     end
 
     def create
-        user_id = session[:userid]
-        @user = User.where("id='#{user_id}'").take
-        @event = @user.events.build(event_params.merge(user_id: user_id))
-        if @event.save
-            redirect_to root_path
+        if logged_in?
+            user_id = session[:userid]
+            @user = User.where("id='#{user_id}'").take
+            @event = @user.events.build(event_params.merge(user_id: user_id))
+            respond_to do |format|
+                if @event.save
+                    format.html { redirect_to root_path, notice: 'Event created successfully' }
+                    format.json { render :index, status: :created, location: root_path}
+                else
+                    format.html { redirect_to '/events/new', notice: 'Error while creating event' }
+                    format.json { render 'new', location: events_new_path }
+                end
+            end
         else
-            render 'new'
+            respond_to do |format|
+                format.html { redirect_to root_path, notice: 'Must be logged in to make a new event' }
+                format.json { render :index, status: :created, location: root_path}
+            end
         end
     end
 
@@ -42,6 +53,11 @@ class EventsController < ApplicationController
                 redirect_to "/events/show/#{event}"
             else
                 redirect_to root_path
+            end
+        else
+            respond_to do |format|
+                format.html { redirect_to root_path, notice: 'You must be logged in to attend an event' }
+                format.json { render :index, location: root_path }
             end
         end
     end
