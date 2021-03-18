@@ -11,7 +11,6 @@
             <%= event.date %>
         </p>
         <%= link_to "See Event", "/events/show/#{event.id}" %>
-        <%= link_to "Attend", events_attend_path(:event_id => event.id), method: :post %>
     </div>
 <% end %>
 <br>
