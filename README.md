@@ -33,9 +33,10 @@ If you intend to download the project, you will need to have Ruby and Rails alre
 2. Run `cd Private-Events` => to change directory
 3. Run `bundle install` => to install all of the gems
 4. Run `yarn install` => to make sure you have application.js
-5. Run `rails db:migrate` to migrate all tables
-6. Run `rails s` => to start the server
-7. Open `localhost:3000` on a browser of your choice
+5. Run `bundle exec rake webpacker:install` => to avoid any webpacker issues
+6. Run `rails db:migrate` to migrate all tables
+7. Run `rails s` => to start the server
+8. Open `localhost:3000` on a browser of your choice
 
 ## Authors
 
