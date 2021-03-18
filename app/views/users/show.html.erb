@@ -1,0 +1,40 @@
+<div class="user">
+    <div class="info">
+        <h3 class="user-name"> <%= @user.username %> </h3>
+    </div>
+</div>
+
+<h1>Past Events</h1>
+<% @past_events.each do |event| %>
+    <div class="event">
+        <h3>
+            <%= event.title %>
+        </h3>
+        <p>
+            <%= event.description %>
+        </p>
+        <p>
+            <%= event.date %>
+        </p>
+        <%= link_to "See Event", "/events/show/#{event.id}" %>
+        <%= link_to "Attend", events_attend_path(:event_id => event.id), method: :post %>
+    </div>
+<% end %>
+<br>
+<br>
+<h1>Upcoming Events</h1>
+<% @upcoming_events.each do |event| %>
+    <div class="event">
+        <h3>
+            <%= event.title %>
+        </h3>
+        <p>
+            <%= event.description %>
+        </p>
+        <p>
+            <%= event.date %>
+        </p>
+        <%= link_to "See Event", "/events/show/#{event.id}" %>
+        <%= link_to "Attend", events_attend_path(:event_id => event.id), method: :post %>
+    </div>
+<% end %>
